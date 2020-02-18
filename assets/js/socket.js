@@ -84,6 +84,11 @@ channel.on("send_ping", (payload) => { console.log("ping requested", payload)
     .receive("ok", (resp) => console.log("ping:", resp.ping))
   })
 
+
+const authSocket = new Socket("/auth_socket", {params: {token: window.authToken }})
+authSocket.onOpen(() => console.log('authSocket connected'))
+authSocket.connect()
+
 // channel.push("invalid")
 //   .receive("ok", (resp) => console.log("won't happen"))
 //   .receive("error", (resp) => console.error("won't happen"))
